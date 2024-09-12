@@ -1,23 +1,35 @@
-import { useEffect,useContext } from "react";
-import { Routes, Route } from "react-router-dom";
-import { Login } from "./views/Login";
-import { UserHome } from "./views/UserHome";
-import { Preferences } from "./views/Preferences";
-import { Privacy } from "./views/Privacy";
-import { Navbar } from "./components/Navbar";
-import { Footer } from "./components/Footer";
-import { UserContext } from "./context/userContext";
 import axios from "axios";
-import { PrivateRouter,PublicRouter } from "./router";
-import { Navigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { UserContext } from "./context/userContext";
+import { PrivateRouter, PublicRouter } from "./router";
+import { Login } from "./views/Login";
+import { Privacy } from "./views/Privacy";
+import { UserHome } from "./views/UserHome";
+
+interface User {
+  email: string;
+  name: string;
+  lastname: string;
+  username: string;
+  token: string;
+}
 
 function App() {
-  const { setEmail, setLastname, setName, setToken,setUsername,email } = useContext(UserContext);
+  const { setEmail, setLastname, setName, setToken, setUsername, email } =
+    useContext(UserContext);
 
   useEffect(() => {
     const userDataString = localStorage.getItem("userData");
-    let userData = null;
-    let token = null;
+    let userData: User = {
+      email: "",
+      name: "",
+      lastname: "",
+      username: "",
+      token: "",
+    };
+    let token = "";
 
     if (userDataString) {
       userData = JSON.parse(userDataString);
@@ -34,10 +46,10 @@ function App() {
         })
         .then(() => {
           setToken(token);
-          setEmail(userData.email);
-          setName(userData.name);
-          setUsername(userData.username)
-          setLastname(userData.lastname);
+          setEmail(userData!.email);
+          setName(userData!.name);
+          setUsername(userData!.username);
+          setLastname(userData!.lastname);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
@@ -47,36 +59,39 @@ function App() {
 
   return (
     <>
-     {email && <Navbar />}
+      {email && <Navbar />}
       <Routes>
-
-      <Route
+        <Route
           path="/"
           element={
             <PrivateRouter>
-               <UserHome />
+              <UserHome />
             </PrivateRouter>
-            
           }
         />
-        <Route path="login" element={<PublicRouter><Login /></PublicRouter>} />
+        <Route
+          path="login"
+          element={
+            <PublicRouter>
+              <Login />
+            </PublicRouter>
+          }
+        />
         <Route
           path="bancainternet"
           element={
             <PrivateRouter>
               <UserHome />
             </PrivateRouter>
-
           }
         />
 
-<Route
+        <Route
           path="privacy"
           element={
             <PrivateRouter>
               <Privacy />
             </PrivateRouter>
-            
           }
         />
       </Routes>

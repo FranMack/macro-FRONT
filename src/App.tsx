@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
+import { envs } from "./config/envs";
 import { UserContext } from "./context/userContext";
 import { PrivateRouter, PublicRouter } from "./router";
 import { Login } from "./views/Login";
@@ -38,7 +39,7 @@ function App() {
 
     if (token) {
       axios
-        .get("http://localhost:3000/api/auth/me", {
+        .get(`${envs.API_DOMAIN}/api/auth/me`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

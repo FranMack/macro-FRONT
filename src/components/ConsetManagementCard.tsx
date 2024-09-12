@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { CancelIcon, PencilIcon, SaveIcon } from "../commons/icons";
+import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 
 interface Card1Options {
@@ -39,7 +40,7 @@ export const ConsetManagementCard = ({
   const updateInfo = () => {
     axios
       .post(
-        `http://localhost:3000/api/auth/info/edit`,
+        `${envs.API_DOMAIN}/api/auth/info/edit`,
         { newInfo: { [category]: inputValue } },
         {
           headers: {

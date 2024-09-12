@@ -10,6 +10,7 @@ import {
   PaymentsIcons,
 } from "../commons/icons";
 import { Dropdown, DropdownOptions } from "../components/Dropdown";
+import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 import { hideEmail } from "../utils/helpersFunctions";
 
@@ -31,7 +32,7 @@ export const Preferences = () => {
   useEffect(() => {
     if (username) {
       axios
-        .get(`http://localhost:3000/api/preferences/list/${username}`, {
+        .get(`${envs.API_DOMAIN}/api/preferences/list/${username}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

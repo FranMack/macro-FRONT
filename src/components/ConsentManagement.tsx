@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import SwitchButton from "../commons/SwitchButton";
+import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 import { ConsetManagementCard } from "./ConsetManagementCard";
 
@@ -23,7 +24,7 @@ export const ConsentManagement = () => {
   useEffect(() => {
     if (username) {
       axios
-        .get(`http://localhost:3000/api/auth/info/${username}`, {
+        .get(`${envs.API_DOMAIN}/api/auth/info/${username}`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,

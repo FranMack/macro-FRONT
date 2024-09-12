@@ -8,6 +8,7 @@ import avatar from "../assets/cat-avatar.jpg";
 import loginIcon from "../assets/icono-login_a.png";
 import background from "../assets/login-image.png";
 import { BackArrow, ClosedEye, Keyboard, OpenEye } from "../commons/icons";
+import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 
 const bottomMenu: string[] = [
@@ -59,7 +60,7 @@ export const Login = () => {
 
     onSubmit: (values) => {
       axios
-        .post("http://localhost:3000/api/auth/login", {
+        .post(`${envs.API_DOMAIN}/api/auth/login`, {
           username: values.username,
           password: values.password,
         })

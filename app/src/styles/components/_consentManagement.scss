@@ -1,0 +1,106 @@
+@import "../variables.scss";
+
+.consent-management-container{
+
+    width: 100%;
+    padding-bottom: 10vh;
+    h2{
+        font-size: 2rem;
+        color:#40a9d5;
+        margin-bottom: 2%;
+    }
+
+   
+    hr{
+        border: none;
+        height: 1.5px;
+        background-color: #3498db;
+    }
+
+    .top-container{
+        width: 80%;
+        margin: 0 auto;
+        background-color: $color_background;
+        padding: 5%;
+        margin-top: 5vh;
+>:last-child{
+    border-bottom: solid 1px rgba($color: $color_primary, $alpha: 0.5);
+}
+       
+
+        h3{
+            font-size: 1.6rem;
+            margin-bottom: 2%;
+        }
+        h5{
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            margin-bottom: 2%;
+            color:$color_primary;
+            margin-top: 4%;
+            padding-bottom: 1%;
+        }
+        p{
+            font-size: 1.5rem;
+        }
+        button{
+            border: none;
+            background-color: $color_primary;
+            color:$color_white;
+            padding: 2%;
+            font-size: 1.4rem;
+            margin-top: 2%;
+        }
+
+        .input-container{
+            margin:  0 auto;
+             width:100%;
+             height: 10vh;
+             border-top: solid 1px rgba($color: $color_primary, $alpha: 0.5);
+             display: flex;
+             align-items: center;
+             justify-content: space-between;
+             font-size: 1.5rem;
+           
+             label{
+ 
+             }
+             input{
+                font-size: 1.5rem;
+                 width: 50%;
+                 height: 100%;
+                 background-color:transparent ;
+                 outline: none;
+                 border:none;
+                 text-align: center
+          ;
+             }
+             p{
+
+             }
+     
+            
+           
+             >.icons-container{
+                display: flex;
+                justify-content: end;
+                align-items: center;
+                height: 100%;
+                width: 15%;
+                column-gap: 20%;
+               
+                svg{
+                    height: 30%;
+                    path{
+                        stroke:$color_primary;
+                        fill:$color_primary
+                    }
+                }
+             }
+     
+         }
+        
+    }
+
+    
+}

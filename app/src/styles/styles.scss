@@ -1,0 +1,28 @@
+@import "./variables.scss";
+@import "./views//login";
+@import "./views/userHome";
+@import "./views//preferences";
+@import "./views/privacy";
+@import "./components//navbar";
+@import "./components//footer";
+@import "./components/dropDown";
+@import "./components/privacyLetter";
+@import "./components/complementaryInfo";
+@import "./components/consentManagement";
+@import "./comons//switchButton";
+
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 62.5%;
+    font-family:sans-serif;
+    overflow-x: hidden;
+}
+
+button{
+cursor: pointer;
+}

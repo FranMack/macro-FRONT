@@ -1,0 +1,98 @@
+@import "../variables.scss";
+
+.dropDown-container{
+    width: 100%;
+    aspect-ratio: 11;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: solid 1px rgba($color: $color_primary, $alpha: 0.5);
+  
+
+    >.dropDown-left-container{
+        height: 40%;
+        width: 80%;
+        margin-left: 2%;
+        display: flex;
+        align-items: center;
+       
+        >.icon-container{
+            height: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background-color: lightblue;
+        }
+        p{
+            margin-left: 3%;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+    }
+    .dropDown-right-container{
+        height:20%;
+        transform: rotate(90deg);
+        transition: 0.5s;
+        margin-right: 1%;
+        svg{
+            path{
+                fill: $color_primary
+            }
+        }
+    }
+    .dropDown-right-container.open{
+        transform: rotate(180deg);
+    }
+}
+
+.dropDown-container{
+    width: 100%;
+}
+
+.dropDown-item{
+    width: 100%;
+    aspect-ratio: 11;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: solid 1px rgba($color: $color_primary, $alpha: 0.3);
+
+    >.left{
+        width: 80%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 10%;
+        p{
+            margin-left: 3%;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        span{
+            color:rgba($color: gray, $alpha: 0.7)
+        }
+    }
+
+    
+}
+
+.efectoReveal {
+    animation-name: efectoReveal;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    
+  }
+  
+  @keyframes efectoReveal {
+    from {
+    transform: translateY(-3px);
+      opacity: 0;
+      filter: brightness(0%);
+    }
+    to {
+     transform: translateY(0);
+      opacity: 1;
+      filter: brightness(100%);
+    }
+  }

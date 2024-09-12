@@ -1,0 +1,47 @@
+@import "../variables.scss";
+
+.preferences-container{
+    width: 100%;
+   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2{
+        font-size: 2rem;
+        color:$color_turquoise;
+        margin-bottom: 2%;
+        width: 100%;
+        text-align: start;
+    }
+    hr{
+        border: none;
+        height: 1.5px;
+
+        width: 100%;
+        background-color: $color_turquoise;
+    }
+
+    .preferences-center-container{
+        margin-top: 5%;
+        padding: 5%;
+        width:90%;
+        padding-bottom: 20vh;
+        background-color: $color_background;
+
+       
+        h3{
+            font-size: 1.8rem;
+            font-weight:600;
+            margin-bottom: 3%;
+        }
+    }
+
+    .preference-bottom-container{
+        border-top: solid 1px rgba($color: $color_primary, $alpha: 0.5);
+        p{
+            margin-top: 1%;
+            font-size: 1.4rem;
+            color:rgba($color: gray, $alpha: 0.7)
+        }
+    }
+}

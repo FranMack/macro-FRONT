@@ -1,0 +1,74 @@
+@import "../variables.scss";
+
+
+nav{
+    width: 100vw;
+    height: 15vh;
+    color:$color_white;
+    background-color: $color_primary;
+    .navbar-top-container{
+        height: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        .navbar-top-left-container{
+            height: 50%;
+           
+        }
+        .navbar-top-right-container{
+            height: 100%;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            column-gap: 5%;
+            font-size: 1.4rem;
+            .navbar-top-info-container{
+                p{
+                    font-size: 1.3rem;   
+                }
+                text-align: end;
+                line-height: 2rem;
+            }
+            >.icon-container{
+                height: 40%;
+                
+            }
+            .logout-button{
+                background-color: $color_pink;
+                font-size: 1.4rem;
+                color:$color_primary;
+                padding: 0.5%;
+                padding-inline: 2%;
+                border-radius: 15px;
+                border: none;
+            }
+           
+        }
+    }
+    .navbar-botton-container{
+        height: 40%;
+        background-color: $color_darkBlue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        column-gap: 3%;
+        >.card{
+            color:$color_white;
+            font-size: 1.5rem;
+            height: 80%;
+            max-width: 20%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            img{
+                height: 100%;
+                aspect-ratio: 1;
+                margin-right: 10px;
+             
+            }
+           
+
+        }
+    }
+}

@@ -1,0 +1,109 @@
+@import "../variables.scss";
+
+.userHome-container{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background-color: $color_background2;
+}
+
+.userHome-internal-container{
+    position:absolute;
+    left: 5%;
+    top:5%;
+    width: 60%;
+    height: 30%;
+    border-radius: 40px;
+    background-color: $color_background;
+    .userHome-internal-top-container{
+        height: 27%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $color_primary;
+        border-radius: 30px;
+        >.left-container{
+            height: 65%;
+            margin-left: 3%;
+            width:fit-content;
+            display: flex;
+
+            justify-content: space-around;
+            column-gap: 30%;
+            align-items: center;
+            >.icon-conteiner{
+                height:60%;
+            }
+            h4{
+                font-size: 2rem;
+                font-weight: 600;
+                color:$color_white
+            }
+        }
+        
+        >.right-container{
+            margin-right: 3%;
+            height: 100%;
+            width:fit-content;
+            display: flex;
+            align-items: center;
+            >.icon-conteiner{
+                height: 26%;
+               
+
+            }
+    }
+}
+.userHome-internal-bottom-container{
+    margin: 0 auto;
+    width: 90%;
+    height: 73%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 10%;
+    
+
+    h3{
+        font-size: 1.8rem;
+        font-weight: 600;
+    }
+    table{
+        width: 100%;
+        text-align: start;
+        
+        border-collapse: collapse;
+    
+        
+thead{
+    tr{
+        
+        th{
+            text-align: start;
+            border-top: 1px solid lightgrey;
+            border-bottom: 1px solid lightgrey;
+            padding-left: 2%;
+            font-size: 1.3rem;
+        }
+        height: 5vh;
+
+    }
+   
+}
+tbody{
+    height: 5vh;
+    tr{
+        td{
+            padding-left: 2%;
+            border-top: 1px solid lightgrey;
+            border-bottom: 1px solid lightgrey;
+            font-size: 1.4rem;
+            font-weight: lighter;
+        }
+    }
+      
+}
+    }
+}
+}

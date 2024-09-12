@@ -1,10 +1,9 @@
 import { ReactNode, createContext, useState } from "react";
 
 interface PrivacySectionContextValue {
-    privacySection: string;
-  
-    setPrivacySection: (email: string) => void;
- 
+  privacySection: string;
+
+  setPrivacySection: (email: string) => void;
 }
 
 interface PrivacySectionContextProviderProps {
@@ -12,24 +11,29 @@ interface PrivacySectionContextProviderProps {
 }
 
 const privacySectionContextDefaultValue: PrivacySectionContextValue = {
-    privacySection: "privacy_letter",
- 
-    setPrivacySection:()=>{}
+  privacySection: "privacy_letter",
+
+  setPrivacySection: () => {},
 };
 
 export const PrivacySectionContext = createContext<PrivacySectionContextValue>(
-    privacySectionContextDefaultValue
+  privacySectionContextDefaultValue
 );
 
-export const PrivacySectionContexProvider = ({ children }: PrivacySectionContextProviderProps) => {
-    const [privacySection,setPrivacySection]=useState<string>("privacy_letter")
-
- 
+export const PrivacySectionContexProvider = ({
+  children,
+}: PrivacySectionContextProviderProps) => {
+  const [privacySection, setPrivacySection] =
+    useState<string>("privacy_letter");
 
   const value: PrivacySectionContextValue = {
     privacySection,
-    setPrivacySection
+    setPrivacySection,
   };
 
-  return <PrivacySectionContext.Provider value={value}>{children}</PrivacySectionContext.Provider>;
+  return (
+    <PrivacySectionContext.Provider value={value}>
+      {children}
+    </PrivacySectionContext.Provider>
+  );
 };

@@ -4,14 +4,14 @@ interface UserContextValue {
   name: string;
   lastname: string;
   email: string;
-  username:string;
+  username: string;
   token: string;
   setEmail: (email: string) => void;
   setUsername: (username: string) => void;
   setName: (name: string) => void;
   setLastname: (name: string) => void;
   setToken: (token: string) => void;
-  cleanUserInfo:()=>void
+  cleanUserInfo: () => void;
 }
 
 interface UserContextProviderProps {
@@ -20,7 +20,7 @@ interface UserContextProviderProps {
 
 const userContextDefaultValue: UserContextValue = {
   email: "",
-  username:"",
+  username: "",
   name: "",
   lastname: "",
   token: "",
@@ -29,7 +29,7 @@ const userContextDefaultValue: UserContextValue = {
   setName: () => {},
   setLastname: () => {},
   setToken: () => {},
-  cleanUserInfo:()=>{}
+  cleanUserInfo: () => {},
 };
 
 export const UserContext = createContext<UserContextValue>(
@@ -43,13 +43,13 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
   const [lastname, setLastname] = useState<string>("");
   const [token, setToken] = useState<string>("");
 
-  const cleanUserInfo=()=>{
-    setUsername("")
-    setEmail("")
-    setName("")
-    setLastname("")
-    setToken("")
-  }
+  const cleanUserInfo = () => {
+    setUsername("");
+    setEmail("");
+    setName("");
+    setLastname("");
+    setToken("");
+  };
 
   const value: UserContextValue = {
     username,
@@ -62,7 +62,7 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
     setLastname,
     setToken,
     setUsername,
-    cleanUserInfo
+    cleanUserInfo,
   };
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -1,52 +1,44 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import SwitchButton from "../commons/SwitchButton";
-import { ConsetManagementCard } from "./ConsetManagementCard";
 import { UserContext } from "../context/userContext";
-import axios from "axios";
+import { ConsetManagementCard } from "./ConsetManagementCard";
 
-interface Card1Options{
-  title:string;
-  value:string,
-  category:string
+interface Card1Options {
+  title: string;
+  value: string;
+  category: string;
 }
 
-
-
-
 export const ConsentManagement = () => {
-  const [requiredInfo,setRequiredInfo]=useState(false)
-  const handleRequiredInfo=()=>{
-    setRequiredInfo(true)
-  }
+  const [requiredInfo, setRequiredInfo] = useState(false);
+  const handleRequiredInfo = () => {
+    setRequiredInfo(true);
+  };
 
-  const{username,token}=useContext(UserContext)
+  const { username, token } = useContext(UserContext);
 
+  const [userInfo, setUserInfo] = useState<Card1Options[]>([]);
 
-  const [userInfo,setUserInfo]=useState<Card1Options[]>([])
-
-  useEffect(()=>{
-    if(username){
-      
-      axios.get(`http://localhost:3000/api/auth/info/${username}`,{
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response)=>{
-        setUserInfo(response.data)
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-
+  useEffect(() => {
+    if (username) {
+      axios
+        .get(`http://localhost:3000/api/auth/info/${username}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setUserInfo(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-  },[username])
+  }, [username]);
 
-
-  console.log("token",token)
-
-
+  console.log("token", token);
 
   return (
     <div className="consent-management-container">
@@ -56,11 +48,9 @@ export const ConsentManagement = () => {
       <div className="top-container">
         <h3>Acceder / Rectificar</h3>
 
-    
-       { userInfo.map((item,i)=>{
-
-        return(<ConsetManagementCard key={i} {...item}/>)
-       })}
+        {userInfo.map((item, i) => {
+          return <ConsetManagementCard key={i} {...item} />;
+        })}
 
         <div className="input-container">
           <label htmlFor="">Microfóno</label>
@@ -77,18 +67,21 @@ export const ConsentManagement = () => {
           <p>Permitir acceder a servicios de ubicación</p>
           <SwitchButton active={false} category="" subCategory="" />
         </div>
-
-       
       </div>
 
       <div className="top-container">
-      <h3>Informar</h3>
+        <h3>Informar</h3>
         <p>
           Brindar informacion que tiene el banco, permitir al cliente descargar
           en pdf o poder enviar una casilla donde ser enviada la informacion.
         </p>
         <button onClick={handleRequiredInfo}> Solicitar información</button>
-        { requiredInfo && <h5>Solicitud enviada: En los proximos 5 días habiles recibirás un email con la información solicitada</h5>}
+        {requiredInfo && (
+          <h5>
+            Solicitud enviada: En los proximos 5 días habiles recibirás un email
+            con la información solicitada
+          </h5>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import {  PrivacySectionContext } from "../context/privacySections.context";
-import { useNavigate } from "react-router";
 
 const table2Info = [
   {

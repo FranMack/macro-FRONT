@@ -1,3 +1,7 @@
+import { useContext } from "react";
+import {  PrivacySectionContext } from "../context/privacySections.context";
+import { useNavigate } from "react-router";
+
 const table2Info = [
   {
     column1: "Información personal",
@@ -50,6 +54,13 @@ const table2Info = [
 ];
 
 export const ComplementaryInfo = () => {
+
+
+  const linkToMail = () => {
+    window.location.href = "mailto:info@macro.com";
+  };
+  const{setPrivacySection}=useContext(PrivacySectionContext)
+  
   return (
     <div className="complementary-info-container">
       <h2>Informacion complementaria para los consumidores</h2>
@@ -136,9 +147,8 @@ export const ComplementaryInfo = () => {
             </td>
 
             <td rowSpan={4} className="final-column">
-              <p>Gestion de mi consentimiento</p>
-              <p>Chatbot</p>
-              <p>info@macro.com.ar</p>
+              <p onClick={()=>setPrivacySection("consent_management")}>Gestion de mi consentimiento</p>
+              <p onClick={linkToMail}>info@macro.com.ar</p>
             </td>
           </tr>
           {/*<tr>

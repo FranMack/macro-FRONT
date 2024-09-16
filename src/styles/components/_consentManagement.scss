@@ -52,55 +52,61 @@
             margin-top: 2%;
         }
 
-        .input-container{
-            margin:  0 auto;
-             width:100%;
-             height: 10vh;
-             border-top: solid 1px rgba($color: $color_primary, $alpha: 0.5);
-             display: flex;
-             align-items: center;
-             justify-content: space-between;
-             font-size: 1.5rem;
-           
-             label{
- 
-             }
-             input{
-                font-size: 1.5rem;
-                 width: 50%;
-                 height: 100%;
-                 background-color:transparent ;
-                 outline: none;
-                 border:none;
-                 text-align: center
-          ;
-             }
-             p{
-
-             }
-     
-            
-           
-             >.icons-container{
-                display: flex;
-                justify-content: end;
-                align-items: center;
-                height: 100%;
-                width: 15%;
-                column-gap: 20%;
-               
-                svg{
-                    height: 30%;
-                    path{
-                        stroke:$color_primary;
-                        fill:$color_primary
-                    }
-                }
-             }
-     
-         }
+      
         
     }
 
     
 }
+
+
+
+
+
+.input-card-container{
+    margin:  0 auto;
+     width:100%;
+     height: 10vh;
+     border-top: solid 1px rgba($color: $color_primary, $alpha: 0.5);
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     font-size: 1.5rem;
+   
+     label{
+
+     }
+     input{
+        font-size: 1.5rem;
+         width: 50%;
+         height: 100%;
+         background-color:transparent ;
+         outline: none;
+         border:none;
+         text-align: center
+  ;
+     }
+     p{
+
+     }
+
+    
+   
+     >.icons-container{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        height: 100%;
+        width: 15%;
+        column-gap: 20%;
+       
+        svg{
+            height: 30%;
+            path{
+                stroke:$color_primary;
+                fill:$color_primary
+            }
+        }
+     }
+
+ }

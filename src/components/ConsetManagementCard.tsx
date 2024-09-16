@@ -64,7 +64,7 @@ export const ConsetManagementCard = ({
   };
 
   return (
-    <div className="input-container">
+    <div className="input-card-container">
       <label htmlFor="">{title}</label>
       <input
         ref={inputRef}

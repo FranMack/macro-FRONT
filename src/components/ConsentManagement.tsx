@@ -5,7 +5,7 @@ import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 import { ConsetManagementCard } from "./ConsetManagementCard";
 
-interface Card1Options {
+export interface Card1Options {
   title: string;
   value: string;
   category: string;
@@ -31,7 +31,15 @@ export const ConsentManagement = () => {
           },
         })
         .then((response) => {
-          setUserInfo(response.data);
+
+          const info=response.data;
+          const filterinfo=info.filter((item:Card1Options)=>{
+            if(item.category!=="email"){
+              return item
+            }
+          })
+
+          setUserInfo(filterinfo);
         })
         .catch((error) => {
           console.log(error);
@@ -53,17 +61,17 @@ export const ConsentManagement = () => {
           return <ConsetManagementCard key={i} {...item} />;
         })}
 
-        <div className="input-container">
+        <div className="input-card-container">
           <label htmlFor="">Microfóno</label>
           <p>Permitir el uso de microfono</p>
           <SwitchButton active={false} category="" subCategory="" />
         </div>
-        <div className="input-container">
+        <div className="input-card-container">
           <label htmlFor="">Camara</label>
           <p>Permitir el uso de la camara</p>
           <SwitchButton active={false} category="" subCategory="" />
         </div>
-        <div className="input-container">
+        <div className="input-card-container">
           <label htmlFor="">Ubicación</label>
           <p>Permitir acceder a servicios de ubicación</p>
           <SwitchButton active={false} category="" subCategory="" />

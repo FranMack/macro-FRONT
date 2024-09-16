@@ -12,7 +12,7 @@ import {
 import { Dropdown, DropdownOptions } from "../components/Dropdown";
 import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
-import { hideEmail } from "../utils/helpersFunctions";
+import { Card1Options } from "../components/ConsentManagement";
 
 interface Preferences {
   ahorrosYbeneficios: boolean;
@@ -23,11 +23,43 @@ interface Preferences {
   inversiones: boolean;
   cheques: boolean;
 }
+import { ConsetManagementCard } from "../components/ConsetManagementCard";
 
 export const Preferences = () => {
   const { email, username, token } = useContext(UserContext);
 
   const [preferences, setPreferences] = useState<any>({});
+
+
+
+
+  const [userInfo, setUserInfo] = useState<Card1Options>({title:"",category:"",value:""});
+
+  useEffect(() => {
+    if (username) {
+      axios
+        .get(`${envs.API_DOMAIN}/api/auth/info/${username}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+
+          const info=response.data;
+          const filterinfo=info.filter((item:Card1Options)=>{
+            if(item.category==="email"){
+              return item
+            }
+          })
+
+          setUserInfo(filterinfo[0]);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [username]);
 
   useEffect(() => {
     if (username) {
@@ -46,6 +78,9 @@ export const Preferences = () => {
         });
     }
   }, [email]);
+
+
+
 
   const dropDown1: DropdownOptions = {
     title: "Ahorros  beneficios para tus compras y mucho más",
@@ -274,7 +309,8 @@ export const Preferences = () => {
     ],
   };
 
-  console.log("xxxxxxxxxxxx", preferences);
+ 
+  console.log("xxxxxxxxxxxxx",userInfo)
 
   return (
     <div className="preferences-container">
@@ -282,9 +318,14 @@ export const Preferences = () => {
       <hr />
 
       <div className="preferences-center-container">
-        <h3>{`Configurá los avisos que queres recibir en ${hideEmail(
-          email
-        )}`}</h3>
+        <h3>Configurá los avisos que queres recibir: </h3>
+        
+        <div className="preference-email-container">
+       {userInfo.value && <ConsetManagementCard title="Tu correo:" value={userInfo.value} category={userInfo.category} />}
+        </div>
+        <br />
+        <br />
+        <br />
 
         <Dropdown {...dropDown1} />
         <Dropdown {...dropDown2} />

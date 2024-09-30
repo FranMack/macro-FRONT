@@ -2,6 +2,9 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
+import { Slide, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+
 
 interface SwitchOptions {
   active: boolean;
@@ -10,10 +13,9 @@ interface SwitchOptions {
 }
 
 const SwitchButton = ({ active, category, subCategory }: SwitchOptions) => {
-  const { username } = useContext(UserContext);
+  const { username,token } = useContext(UserContext);
   const [isOn, setIsOn] = useState(active);
-  console.log("yyyyyyyyyyyyyyyyyy", subCategory);
-  console.log("zzzzzzzzzzzzzzzzzzzzz", category);
+
 
   const toggleSwitch = () => {
     axios.patch(`${envs.API_DOMAIN}/api/preferences/update`, {
@@ -22,7 +24,17 @@ const SwitchButton = ({ active, category, subCategory }: SwitchOptions) => {
       preferences: {
         [subCategory]: !isOn,
       },
-    });
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+    
+  );
+    
+    toast(isOn ?"Notificación desactivada":"Notificación activada",{autoClose: 2000,transition:Slide,hideProgressBar: true,style:{backgroundColor:"#40a9d5",color:"#ffff",fontSize:"1.5rem"}})
     setIsOn(!isOn);
   };
 

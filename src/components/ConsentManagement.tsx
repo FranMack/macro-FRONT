@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import SwitchButton from "../commons/SwitchButton";
+import { SwitchDevicePermission } from "../commons/SwitchDevicePermission";
 import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 import { ConsetManagementCard } from "./ConsetManagementCard";
+import { BeatLoader } from "react-spinners";
 
 export interface Card1Options {
   title: string;
@@ -13,11 +14,35 @@ export interface Card1Options {
 
 export const ConsentManagement = () => {
   const [requiredInfo, setRequiredInfo] = useState(false);
+  const [isLoading,setIsLoading]=useState<boolean>(false)
+
+  const { username, token, email } = useContext(UserContext);
+
   const handleRequiredInfo = () => {
-    setRequiredInfo(true);
+    setIsLoading(true)
+    axios
+      .post(
+        `${envs.API_DOMAIN}/api/preferences/send-client-data`,
+        {
+          email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        setIsLoading(false)
+        setRequiredInfo(true);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  const { username, token } = useContext(UserContext);
+ 
 
   const [userInfo, setUserInfo] = useState<Card1Options[]>([]);
 
@@ -31,13 +56,12 @@ export const ConsentManagement = () => {
           },
         })
         .then((response) => {
-
-          const info=response.data;
-          const filterinfo=info.filter((item:Card1Options)=>{
-            if(item.category!=="email"){
-              return item
+          const info = response.data;
+          const filterinfo = info.filter((item: Card1Options) => {
+            if (item.category !== "email") {
+              return item;
             }
-          })
+          });
 
           setUserInfo(filterinfo);
         })
@@ -46,8 +70,6 @@ export const ConsentManagement = () => {
         });
     }
   }, [username]);
-
-  console.log("token", token);
 
   return (
     <div className="consent-management-container">
@@ -64,17 +86,17 @@ export const ConsentManagement = () => {
         <div className="input-card-container">
           <label htmlFor="">Microfóno</label>
           <p>Permitir el uso de microfono</p>
-          <SwitchButton active={false} category="" subCategory="" />
+          <SwitchDevicePermission device="audio" />
         </div>
         <div className="input-card-container">
           <label htmlFor="">Camara</label>
           <p>Permitir el uso de la camara</p>
-          <SwitchButton active={false} category="" subCategory="" />
+          <SwitchDevicePermission device="video" />
         </div>
         <div className="input-card-container">
           <label htmlFor="">Ubicación</label>
           <p>Permitir acceder a servicios de ubicación</p>
-          <SwitchButton active={false} category="" subCategory="" />
+          <SwitchDevicePermission device="gps" />
         </div>
       </div>
 
@@ -84,7 +106,7 @@ export const ConsentManagement = () => {
           Brindar informacion que tiene el banco, permitir al cliente descargar
           en pdf o poder enviar una casilla donde ser enviada la informacion.
         </p>
-        <button onClick={handleRequiredInfo}> Solicitar información</button>
+        <button onClick={handleRequiredInfo}> {isLoading ? <BeatLoader color="#ffff" speedMultiplier={0.4}/> :"Solicitar información"}</button>
         {requiredInfo && (
           <h5>
             Solicitud enviada: En los proximos 5 días habiles recibirás un email

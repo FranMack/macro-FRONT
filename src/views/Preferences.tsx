@@ -14,6 +14,7 @@ import { envs } from "../config/envs";
 import { UserContext } from "../context/userContext";
 import { Card1Options } from "../components/ConsentManagement";
 
+
 interface Preferences {
   ahorrosYbeneficios: boolean;
   ofertasYseguros: boolean;
@@ -43,7 +44,9 @@ export const Preferences = () => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        })
+        }
+        
+      )
         .then((response) => {
 
           const info=response.data;
@@ -95,7 +98,8 @@ export const Preferences = () => {
 
         active:
           preferences.ahorrosYbeneficios &&
-          preferences.ahorrosYbeneficios.noticias_institucionales,
+          preferences.ahorrosYbeneficios.ahorros_y_promociones,
+          
       },
       {
         title: "Ofertas de capacitación y becas universitarias",
@@ -104,7 +108,8 @@ export const Preferences = () => {
         subCategory: "capacitacion_y_becas",
         active:
           preferences.ahorrosYbeneficios &&
-          preferences.ahorrosYbeneficios.ahorros_y_promociones,
+          preferences.ahorrosYbeneficios.capacitacion_y_becas,
+       
       },
       {
         title: "Noticias institucionales",
@@ -115,7 +120,8 @@ export const Preferences = () => {
 
         active:
           preferences.ahorrosYbeneficios &&
-          preferences.ahorrosYbeneficios.capacitacion_y_becas,
+          preferences.ahorrosYbeneficios.noticias_institucionales,
+         
       },
     ],
   };
@@ -310,7 +316,6 @@ export const Preferences = () => {
   };
 
  
-  console.log("xxxxxxxxxxxxx",userInfo)
 
   return (
     <div className="preferences-container">

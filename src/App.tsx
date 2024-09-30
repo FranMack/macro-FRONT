@@ -8,6 +8,8 @@ import { PrivateRouter, PublicRouter } from "./router";
 import { Login } from "./views/Login";
 import { Privacy } from "./views/Privacy";
 import { UserHome } from "./views/UserHome";
+import { ToastContainer} from 'react-toastify';
+ 
 
 interface User {
   email: string;
@@ -60,6 +62,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer/>
       {email && <Navbar />}
       <Routes>
         <Route

@@ -15,7 +15,7 @@ export const ConsetManagementCard = ({
   value,
   category,
 }: Card1Options) => {
-  const { token } = useContext(UserContext);
+  const { token,setEmail } = useContext(UserContext);
 
   const [disable, setDisable] = useState(true);
 
@@ -50,6 +50,14 @@ export const ConsetManagementCard = ({
         }
       )
       .then(() => {
+
+        if(category==="email"){
+          const userDataString = localStorage.getItem("userData") || "[]";
+          const userData= JSON.parse(userDataString);
+          const userDataUpdated={...userData,email:inputValue};
+          localStorage.setItem("userData",JSON.stringify(userDataUpdated))
+          setEmail(inputValue)
+        }
         setOriginalValue(inputValue);
         handleEdit();
       })
@@ -62,6 +70,8 @@ export const ConsetManagementCard = ({
     setInputValue(originalValue);
     handleEdit();
   };
+
+
 
   return (
     <div className="input-card-container">

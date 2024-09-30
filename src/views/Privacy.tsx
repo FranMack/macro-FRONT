@@ -53,9 +53,9 @@ export const Privacy = () => {
           return (
             <div className="aside-card" key={i}>
               <h4>{item.category}</h4>
-              {item.subCategories.map((item) => {
+              {item.subCategories.map((item,i) => {
                 return (
-                  <p style={{color:item.path===privacySection ?"#40a9d5":""}} onClick={() => changePrivacySection(item.path)}>
+                  <p key={i} style={{color:item.path===privacySection ?"#40a9d5":""}} onClick={() => changePrivacySection(item.path)}>
                     {item.title}
                   </p>
                 );

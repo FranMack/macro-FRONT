@@ -21,7 +21,14 @@ export const SwitchDevicePermission = ({ device }: DeviceOptions) => {
     };
   }, [micStream]);
 
+   const deviceState={
+    micAccess,
+    locationAccess,
+    error,position
+  }
+
   const requestAccess = async () => {
+    console.log(deviceState)
     if (isOn) {
       // Si el micrófono o GPS está encendido, desactiva el acceso
       if (device === "gps") {
